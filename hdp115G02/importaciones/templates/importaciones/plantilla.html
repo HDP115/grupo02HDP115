@@ -12,9 +12,8 @@
     {% block styles %}{% endblock %}
 
     <script src="{% static 'importaciones/js/jquery.min.js' %}"></script>
-    {% block scripts %}{% endblock %}
     <script src="{% static 'importaciones/js/bootstrap.min.js' %}" charset="utf-8"></script>
-    <script src="{% static 'importaciones/js/jquery.redirect.js' %}"></script>    
+    {% block scripts %}{% endblock %}
 
   </head>
   <body>
@@ -27,13 +26,10 @@
     <div class="collapse navbar-collapse">
         <nav class="navbar navbar-default">
           <ul class="nav navbar-nav">
-            <li role="presentation" class="{% block activo1 %}{% endblock %}"><a href="info"> Información </a></li>
+            <li role="presentation" class="{% block activo1 %}{% endblock %}"><a href="informacion"> Información </a></li>
             <li role="presentation" class="{% block activo2 %}{% endblock %}"><a href="consultar"> Consultar Datos </a></li>
             <li role="presentation" class="{% block activo3 %}{% endblock %}"><a href="formulas"> Editar Fórmulas </a></li>
             <li role="presentation" class="{% block activo4 %}{% endblock %}"><a href="agregarDatos"> Agregar Datos </a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <p class="navbar-text">Usuario: <a href="#" class="navbar-link">Cerrar sesión</a>.</p>
           </ul>
         </nav>
     </div>

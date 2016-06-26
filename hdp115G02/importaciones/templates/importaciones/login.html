@@ -1,0 +1,29 @@
+{% extends "importaciones/plantilla.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block activo3 %}active{% endblock %}
+
+{% block content %}
+
+            {% if mensaje %}
+                <div>
+                    {{ mensaje }}
+                </div>
+            {% endif %}
+
+            <form align="center" method="post" action="" class="form-inline">
+                {% csrf_token %}
+                <div  class="form-group">
+                    <label>Nombre de usuario</label>
+                    <input type="text" id="username" name="username" class="form-inline" value="{{ username }}">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button class="btn btn_default" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

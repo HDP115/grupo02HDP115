@@ -1,63 +1,92 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
+from django.db import IntegrityError
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import RequestContext
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from importaciones.models import *
 from django.core import serializers
-from django.core.serializers.json import DjangoJSONEncoder
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 def plantilla(request):
     return render(request,'importaciones/plantilla.html')
 
+
+@login_required
 def info(request):
     return render(request, 'importaciones/informacion.html')
 
+@login_required
 def agregarDatos(request):
     return render(request, 'importaciones/agregarDatos.html')
 
-def consultar(request):
-    return render(request, 'importaciones/consultar.html')
 
+@login_required
+def consultar(request):
+    opciones = ['Importacion', 'Exportacion', 'Balanza Comercial', 'PIB']
+    Context = {'lista_opciones': opciones}
+    return render(request, 'importaciones/consultar.html', Context)
+
+@login_required
 def formulas(request):
     return render(request, 'importaciones/formulas.html')
 
+@login_required
 def agregarIndi(request):
-    return render(request, 'importaciones/agregarIndividual.html')
+    productos= Producto.objects.all()
+    return render(request, 'importaciones/agregarIndividual.html', {'productos': productos})
 
+@login_required
 def graficar(request):
-    data = request.POST.get('table')
-    Context = {'tabla' : data}
-
-    return render(request, 'importaciones/graficar.html', Context)
+    return render(request, 'importaciones/graficar.html')
 
 def habilitarConsulta(request):
     if request.is_ajax() or request.method == 'POST':
-        tipo = request.POST.get('tipo')
-        if(tipo == '1'):
-            consulta = Periodoanual.objects.all()
-        if(tipo == '2'):
-            consulta = Producto.objects.all().order_by('-codigo_producto')
-        resultado = serializers.serialize('json', consulta)
-    else:
-        resultado = "";
+        opc = request.POST.get('opc')
 
-    return HttpResponse(json.dumps(resultado), content_type="application/json");
+        if opc == '1' or opc == '2' or opc == '3':
+            resultado = Periodoanual.objects.all()
+            anios = serializers.serialize('json', resultado)
+            #meses = [mes.as_json() for mes in resultado]
+        else:
+            anios = "pib"
 
-def buscar(request):
+    return HttpResponse(json.dumps(anios),
+            content_type="application/json");
+
+
+
+def habilitarAgregarId(request):
     if request.is_ajax() or request.method == 'POST':
-        tipo = request.POST.get('tipo')
-        anio = request.POST.get('anio')
-        prod = request.POST.get('producto')
-        numAnio = int(anio);
+        opc = request.POST.get('row')
+        resultado = Periodoanual.objects.all()
+        anios = serializers.serialize('json', resultado)
+    return HttpResponse(json.dumps(anios),
+            content_type="application/json");
 
-        if tipo == '1':
-            if prod != '0':
-                consulta = Dato.objects.filter(periodomensual__anio = numAnio, codigo_producto__nombre_producto = prod).values("periodomensual__mes", "importacion", "exportacion")
+
+def login_view(request):
+
+    mensaje = ''
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect("/importaciones/informacion/")
             else:
-                consulta = Dato.objects.filter(periodomensual__anio = numAnio).values("codigo_producto__nombre_producto", "periodomensual__mes", "importacion", "exportacion").order_by("periodomensual", "codigo_producto").exclude(codigo_producto=0)
-        if tipo == '2':
-            consulta = Productointernobruto.objects.filter(periodotrimestral__anio = numAnio).values("tipo", "periodotrimestral__trimestre", "cantidad").order_by("periodotrimestral__trimestre","tipo");
+                mensaje = "Su cuenta no esta activa, contacte al administrador"
+        mensaje = 'Nombre de usuario o contrasena no valido'
+    return render(request, 'importaciones/login.html', {'mensaje': mensaje})
 
-        #resultado = serializers.serialize('json', consulta)
 
-    return HttpResponse(json.dumps(list(consulta),cls=DjangoJSONEncoder), content_type="application/json");
+@login_required
+def logoutUsuario(request):
+    logout(request)
+    return HttpResponseRedirect("/importaciones/logout/")
