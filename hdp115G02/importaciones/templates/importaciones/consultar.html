@@ -1,0 +1,56 @@
+{% extends "importaciones/plantilla.html" %}
+{% load staticfiles %}
+
+{% block title %}Consultar Datos{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'importaciones/js/consulta.js' %}" type="text/javascript"></script>
+  <script src="{% static 'importaciones/js/graficar.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block activo2 %}active{% endblock %}
+
+{% block content %}
+<h1>Consultar datos de productos</h1>
+
+<div class="divFiltro">
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="listaOpciones">Consultar sobre: </label>
+
+      <select id="listaOpciones" class="form-control" onchange="habilitar()">
+        <option value='0' selected="true" disabled="true">Seleccionar...</option>
+        <option value="imp">Importacion</option>
+        <option value="exp">Exportacion</option>
+        <option value="bal">Balanza Comercial</option>
+        <option value="pib">PIB</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="listaAnio">Año:</label>
+
+      <select id="listaAnio" class="form-control" disabled="true">
+        <option value='0' selected="true" disabled="true">Seleccionar...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="listaProductos">Productos:</label>
+
+      <select id="listaProductos" class="form-control" disabled="true">
+        <option value='0' selected="true" disabled="true">Seleccionar...</option>
+      </select>
+    </div>
+
+
+    <input class="btn btn-default" type="button" value="Consultar" onclick="buscar()">
+  </form>
+</div>
+
+<div class="divTabla" id="tablaDatos">
+</div>
+
+<input type="button" name="btnGraficar" value="Graficar Datos" onclick="copiarTabla()" class="btn">
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Agregar titulo a la página{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'importaciones/css/bootstrap.min.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'importaciones/css/footer.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'importaciones/css/principal.css' %}" media="screen" title="no title" charset="utf-8">
+    {% block styles %}{% endblock %}
+
+    <script src="{% static 'importaciones/js/jquery.min.js' %}"></script>
+    {% block scripts %}{% endblock %}
+    <script src="{% static 'importaciones/js/bootstrap.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'importaciones/js/jquery.redirect.js' %}"></script>
+
+  </head>
+  <body>
+    <!-- Imagen de encabezado -->
+    <div class="center">
+      <img class="portada" src="{% static 'importaciones/img/nue-sistema-de-importaciones.png' %}" alt="Imagen" />
+    </div>
+
+    <!-- Menú principal -->
+    <div class="collapse navbar-collapse">
+        <nav class="navbar navbar-default">
+          <ul class="nav navbar-nav">
+            <li role="presentation" class="{% block activo1 %}{% endblock %}"><a href="informacion"> Información </a></li>
+            <li role="presentation" class="{% block activo2 %}{% endblock %}"><a href="consultar"> Consultar Datos </a></li>
+            <li role="presentation" class="{% block activo3 %}{% endblock %}"><a href="formulas"> Editar Fórmulas </a></li>
+            <li role="presentation" class="{% block activo4 %}{% endblock %}"><a href="agregarDatos"> Agregar Datos </a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <p class="navbar-text"><a href="/importaciones/logout/" class="navbar-link">Cerrar sesión</a>.</p>
+          </ul>
+        </nav>
+    </div>
+
+
+    <!-- Contenido -->
+    <div class="container" id="content">
+      {% block content %}
+        <p>
+          Agregar contenido a la página
+        </p>
+      {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted text-center">Flujo de importación de los 5 productos de mayor índole, Grupo 02 del GT02</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
