@@ -1,7 +1,0 @@
-Conclusiones
-
-Al término del desarrollo de nuestra aplicación web para el control y manipulación de los 5 productos más importados de El Salvador concluimos que:
-
-•	Desarrollar una página web en el sistema operativo Debian 8 debe ir acompañado por herramientas como Achievo, Git y Mantis BugTracker encargados de gestionar, controlar e identificar errores en las versiones que se crean del proyecto. De manera que resulta más eficiente el desarrollo del proyecto por completo.
-
-•	La página web facilita al usuario la obtención de los datos, muestra en forma tabular y grafica los 5 productos más importados por El Salvador de los años 2014-2015.
