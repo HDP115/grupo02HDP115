@@ -1,63 +1,126 @@
 {% extends "importaciones/plantilla.html" %}
+{% load staticfiles %}
 
 {% block title %}Editor de Formulas{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'importaciones/js/formulas.js' %}"></script>
+{% endblock %}
 
 {% block activo3 %}active{% endblock %}
 
 {% block content %}
-<!--aqui comienzan los contenedores de las formulas-->
-<div class="Variables">
+<div class="container">
+  <div class="row">
+    <div class="col-md-8" style = "min-height:300px;">
+      <ul class="nav nav-tabs" id="navs">
+        <li class="active"><a data-toggle="tab" href="#imp">Importación</a></li>
+        <li><a data-toggle="tab" href="#exp">Exportación</a></li>
+        <li><a data-toggle="tab" href="#bal">Balanza Comercial</a></li>
+        <li><a data-toggle="tab" href="#pib">PIB</a></li>
+      </ul>
 
+      <div class="tab-content">
+        <div id="imp" class="tab-pane fade in active">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <select class="form-control producto" name="">
+                <option value="P1">Telefonos moviles</option>
+                <option value="P2">Medicina para uso humano</option>
+                <option value="P3">Gasolina fuel N.6</option>
+                <option value="P4">Gasolina Diesel</option>
+                <option value="P5">Otras gasolinas</option>
+                <option value="5Prod">Los 5 productos</option>
+                <option value="Total">Total</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="exp" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <select class="form-control producto" name="">
+                <option value="P1">Telefonos moviles</option>
+                <option value="P2">Medicina para uso humano</option>
+                <option value="P3">Gasolina fuel N.6</option>
+                <option value="P4">Gasolina Diesel</option>
+                <option value="P5">Otras gasolinas</option>
+                <option value="5Prod">Los 5 productos</option>
+                <option value="Total">Total</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="bal" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <select class="form-control producto" name="">
+                <option value="P1">Telefonos moviles</option>
+                <option value="P2">Medicina para uso humano</option>
+                <option value="P3">Gasolina fuel N.6</option>
+                <option value="P4">Gasolina Diesel</option>
+                <option value="P5">Otras gasolinas</option>
+                <option value="5Prod">Los 5 productos</option>
+                <option value="Total">Total</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="pib" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <select class="form-control tipoPib" name="">
+                <option value="Corr">Corriente</option>
+                <option value="Cons">Constante</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="formula">Formula: </label>
+          <input type="text" id="formula" class="form-control" readonly style="width: 400px;">
+        </div>
+        <input type="button" name="name" value="Calcular" class="btn btn-default">
+      </form>
+    </div>
+
+    <div class="col-md-3"></div>
+  </div>
 </div>
 
-<div class="Operadores">
-
-</div>
-
-<div class="Constantes">
-
-</div>
-<br>
-
-<p align="center">
-  <input type="text" name="name" value="">
-  <input type="button" name="name" value="Calcular">
-</p>
-
-<br>
-
-<table  border="1" width="200" cellspacing="1">
+<table class="table table-striped">
+  <caption> Resultado de la formula </caption>
   <thead>
-    Resultados
+    <tr>
+      <th> Col1 </th>
+      <th> Col2 </th>
+      <th> Col3 </th>
+    </tr>
   </thead>
-  <tr>
-    <td>
-      1
-    </td>
-    <td>
-      2
-    </td>
-    <td>
-      3
-    </td>
-    <td>
-      4
-    </td>
-    <td>
-      5
-    </td>
-  </tr>
-  <tr>
-
-  </tr>
-  <tr>
-
-  </tr>
-  <tr>
-
-  </tr>
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
 </table>
-<br>
+
 <p align="center">
   <input type="button" name="name" value="Graficar">
 </p>

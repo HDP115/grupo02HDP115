@@ -1,3 +1,28 @@
 {% extends "importaciones/plantilla.html" %}
+{% load staticfiles %}
 
 {% block title %}Graficar datos{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'importaciones/js/highcharts.js' %}"></script>
+  <script src="{% static 'importaciones/js/graficar.js' %}" type="text/javascript"></script>
+  <script src="{% static 'importaciones/js/exporting.js' %}"></script>
+  <script src="{% static 'importaciones/js/data.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+  <div class="tabla" id="tablaContainer">
+
+  </div>
+
+  <div id="grafica" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+  <script type="text/javascript">
+    var string = '{{tabla | safe}}';
+
+    $("#tablaContainer").append(string);
+
+    $(document).on("ready", graficar());
+  </script>
+{% endblock%}

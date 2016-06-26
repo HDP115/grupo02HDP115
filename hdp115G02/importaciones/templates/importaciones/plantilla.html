@@ -12,8 +12,9 @@
     {% block styles %}{% endblock %}
 
     <script src="{% static 'importaciones/js/jquery.min.js' %}"></script>
-    <script src="{% static 'importaciones/js/bootstrap.min.js' %}" charset="utf-8"></script>
     {% block scripts %}{% endblock %}
+    <script src="{% static 'importaciones/js/bootstrap.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'importaciones/js/jquery.redirect.js' %}"></script>
 
   </head>
   <body>
@@ -31,8 +32,12 @@
             <li role="presentation" class="{% block activo3 %}{% endblock %}"><a href="formulas"> Editar Fórmulas </a></li>
             <li role="presentation" class="{% block activo4 %}{% endblock %}"><a href="agregarDatos"> Agregar Datos </a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <p class="navbar-text"><a href="/importaciones/logout/" class="navbar-link">Cerrar sesión</a>.</p>
+          </ul>
         </nav>
     </div>
+
 
     <!-- Contenido -->
     <div class="container" id="content">

@@ -1,19 +1,13 @@
 {% extends "importaciones/plantilla.html" %}
 
-
 {% load staticfiles %}
 
 {% block title %}Agregar Datos Individual{% endblock %}
 
 {% block scripts %}
-  <script src="{% static 'importaciones/js/agregarid.js' %}"></script>
+  <script src="{% static 'importaciones/js/agregar.js' %}"></script>
 
 {% endblock %}
-
-{% block activo2 %}active{% endblock %}
-<ul class="nav navbar-nav navbar-right">
-  <p class="navbar-text">Usuario: <a href="/logout/" class="navbar-link">Cerrar sesión</a></p>
-</ul>
 
 {% block content %}
 
@@ -22,10 +16,9 @@
 
 <div align="select">
   <form class="form-inline">
-
     <div class="form-group">
       <label for="listaProductos">Producto: </label>
-      <select id="listaProductos" class="form-control" onchange="habilitarAgregarId()">
+      <select id="listaProductos" class="form-control">
           <option value="0" disabled="true" selected="true">Seleccionar...</option>
           {% for row in productos %}
           <option value="{{row.codigo_producto}}">{{row.nombre_producto}}</option>
@@ -33,14 +26,22 @@
       </select>
     </div>
 
+    <div class="form-group">
+      <label for="listaAnios">Para el año: </label>
+      <select id="listaAnios" class="form-control" onchange="habilitarMeses()">
+        <option value="0" disabled="true" selected="true">Seleccionar...</option>
+        {% for a in anios %}
+        <option value="{{a.anio}}">{{a.anio}}</option>
+        {% endfor %}
+      </select>
+    </div>
 
-        <div class="form-group">
-          <label for="listaAnios">Año : </label>
-          <select id="listaAnios" class="form-control" >
-            <option value="0" disabled="true" selected="true">Seleccionar...</option>
-          </select>
-        </div>
-
+    <div class="form-group">
+      <label for="listaMeses">y el mes: </label>
+      <select id="listaMeses" class="form-control" disabled="true">
+        <option value="0" disabled="true" selected="true">Seleccionar...</option>
+      </select>
+    </div>
   </form>
 </div>
 
@@ -51,7 +52,7 @@
       <input type="text" id="txtDato" value="">
     </div>
 
-    <input type="button" name="name" class="btn btn_default" value="Ingresar">
+    <input type="button" name="name" class="btn btn_default" value="Ingresar" onclick="guardar()">
   </form>
 </div>
 {% endblock %}
