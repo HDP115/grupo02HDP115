@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+.center{
+  margin:auto;
+  width: 30%;
+}
+
+.portada{
+  width: 80%;
+}
+
+a:link {
+  color: #536b6c;
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+  color: #536b6c;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:active {
+  text-decoration: none;
+}
+
+#content > div{
+  margin-bottom: 50px;
+}

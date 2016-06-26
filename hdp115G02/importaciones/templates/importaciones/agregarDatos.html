@@ -1,0 +1,89 @@
+{% extends "importaciones/plantilla.html" %}
+
+{% block title %}Agregar Datos{% endblock %}
+
+{% block activo4 %}active{% endblock %}
+
+{% block content %}
+
+<h1>Agregar datos</h1>
+
+<p>
+  Para ingresar datos masivamente, debe primero descargar la plantilla, llenarla para despues subirla y verificar los datos.
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="listaOpciones">Ingresar datos de:</label>
+          <select id="listaOpciones" class="form-control">
+              <option value="0" disabled="true" selected="true">Seleccionar...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="listaPeriodos">Para el periodo</label>
+          <select id="listaPeriodos" class="form-control" disabled="true">
+            <option value="0" disabled="true" selected="true">Seleccionar...</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <form class="form-inline">
+        <div class="checkbox">
+          <label><input type="checkbox" value="" />Descargar plantilla con datos actuales</label>
+        </div>
+        <input type="button" class="btn btn-default" name="Descargarplantilla" value="Descargar plantilla" />
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="uploadtxt">Subir el archivo:</label>
+          <input type="text" name="uploadtxt" value="" class="form-control">
+        </div>
+
+        <input type="button" name="uploadbtn" class="btn btn-default" value="...">
+        <input type="button" name="cargar" class="btn btn-default" value="Cargar datos">
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<div class="divTabla">
+  <table class="table table-striped">
+    <caption> Datos a ingresar</caption>
+    <thead>
+      <tr>
+        <th> Col1 </th>
+        <th> Col2 </th>
+        <th> Col3 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="center">
+  <input type="button" name="name" class="btn btn-default"value="Guardar">
+</div>
+
+<div class="individual">
+  <p>
+  Tambien puedes <a href="agregarIndividual">agregar datos individualmente</a> (unicamente datos de importaciones)
+  </p>
+</div>
+
+{% endblock %}
