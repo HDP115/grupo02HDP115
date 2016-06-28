@@ -12,9 +12,6 @@ from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 
 # Create your views here.
-def plantilla(request):
-    return render(request,'importaciones/plantilla.html')
-
 @login_required(login_url='/importaciones/')
 def info(request):
     return render(request, 'importaciones/informacion.html')
@@ -105,7 +102,7 @@ def buscar(request):
     #la funcion list convierte un querySet en una list que se puede onvertir a formato JSON.
     return HttpResponse(json.dumps(list(consulta),cls=DjangoJSONEncoder), content_type="application/json");
 
-
+# vistas para el login
 def login_view(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect("/importaciones/informacion/")
