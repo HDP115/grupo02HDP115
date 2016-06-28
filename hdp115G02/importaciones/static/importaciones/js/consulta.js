@@ -28,6 +28,10 @@ function validar(){
       }
     }
   }
+
+  if(resp){
+    buscar();
+  }
 }
 
 // Habilita los select requeridos.
