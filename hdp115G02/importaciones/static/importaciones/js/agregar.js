@@ -56,6 +56,9 @@ function validar(){
       if(v<0){
         alert("El valor ingresado debe ser positivo!")
       }
+      else{
+        guardar();
+      }
     }
   }
 }
