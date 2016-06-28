@@ -1,3 +1,35 @@
+function validar(){
+  var opc = $("#listaOpciones").val();
+  var anio = $("#listaAnio").val();
+  var prod = $("#listaProductos").val();
+
+  //alert(opc +" asd "+ anio + " asdf " + prod);
+
+  var resp = false;
+
+  if(!opc){
+    alert("Elija una opcion!");
+  }
+  else{
+    if(opc == 'pib'){
+      if(!anio){
+        alert("Elija un año!");
+      }
+      else{
+        resp = true;
+      }
+    }
+    else{
+      if(!anio || !prod){
+        alert("Elija un producto y un año!")
+      }
+      else{
+        resp = true;
+      }
+    }
+  }
+}
+
 // Habilita los select requeridos.
 function habilitar(){
   //Para cualquier opción, habilita los años.
