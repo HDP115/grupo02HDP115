@@ -38,3 +38,24 @@ function guardar(){
      },
   });
 }
+
+function validar(){
+  var mes = $("#listaMeses").val();
+  var anio = $("#listaAnios").val();
+  var prod = $("#listaProductos").val();
+
+  if(!mes || !anio || !prod){
+    alert("Seleccione un producto, un año y un mes!");
+  }
+  else{
+    v = $("#txtDato").val();
+    if(!$.isNumeric(v)){
+      alert("Ingrese un numero!")
+    }
+    else {
+      if(v<0){
+        alert("El valor ingresado debe ser positivo!")
+      }
+    }
+  }
+}
